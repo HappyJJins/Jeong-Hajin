@@ -58,7 +58,11 @@ $ pip3 install Flask
 
 * 설치 결과
 ```console
-[본인 화면 복사]
+Requirement already satisfied: flask in /home/hkit10/.local/lib/python3.8/site-packages (1.1.2)
+Requirement already satisfied: Jinja2>=2.10.1 in /usr/lib/python3/dist-packages (from flask) (2.10.1)
+Requirement already satisfied: click>=5.1 in /usr/lib/python3/dist-packages (from flask) (7.0)
+Requirement already satisfied: Werkzeug>=0.15 in /home/hkit10/.local/lib/python3.8/site-packages (from flask) (1.0.1)
+Requirement already satisfied: itsdangerous>=0.24 in /home/hkit10/.local/lib/python3.8/site-packages (from flask) (1.1.0)
 ```
 
 ### 테스트 파일 추가
@@ -81,11 +85,16 @@ $ pytest
 
 * 실행 결과
 ```console
-[본인 화면 복사]
+
+Command 'pytest' not found, but can be installed with:
+
+apt install python-pytest
+Please ask your administrator.
+
 ```
 
 ## 2.3 수행형 과제에서 선정한 서비스에 대한 공통 모듈 구현
-![]()
+![](https://github.com/HappyJJins/Jeong-Hajin/blob/master/hkit_assignment/board.png?raw=true)
 
 ## 2.4 공통 모듈에 대한 unit test 수행
 
@@ -101,9 +110,6 @@ app = flask.Flask(__name__)
 with app.test_request_context('/'):
     assert flask.request.path == '/'
 
-with app.test_request_context('/getPosts.html?no=1'):
-    assert flask.request.path == '/getPosts.html'
-    assert flask.request.args['no'] == '1'
 ```
 
 ### unit test 실행
@@ -115,7 +121,12 @@ $ pytest
 
 * 실행 결과
 ```console
-[본인 화면 복사]
+
+Command 'pytest' not found, but can be installed with:
+
+apt install python-pytest
+Please ask your administrator.
+
 ```
 
 
@@ -128,7 +139,19 @@ $ pip3 install Flask-WTF
 ```
 * 설치 결과 
 ```console
-[본인 화면 복사]
+Collecting Flask-WTF
+  Downloading Flask_WTF-0.14.3-py2.py3-none-any.whl (13 kB)
+Requirement already satisfied: itsdangerous in /home/hkit10/.local/lib/python3.8/site-packages (from Flask-WTF) (1.1.0)
+Requirement already satisfied: Flask in /home/hkit10/.local/lib/python3.8/site-packages (from Flask-WTF) (1.1.2)
+Collecting WTForms
+  Downloading WTForms-2.3.1-py2.py3-none-any.whl (169 kB)
+     |████████████████████████████████| 169 kB 349 kB/s
+Requirement already satisfied: click>=5.1 in /usr/lib/python3/dist-packages (from Flask->Flask-WTF) (7.0)
+Requirement already satisfied: Jinja2>=2.10.1 in /usr/lib/python3/dist-packages (from Flask->Flask-WTF) (2.10.1)
+Requirement already satisfied: Werkzeug>=0.15 in /home/hkit10/.local/lib/python3.8/site-packages (from Flask->Flask-WTF) (1.0.1)
+Requirement already satisfied: MarkupSafe in /usr/lib/python3/dist-packages (from WTForms->Flask-WTF) (1.1.0)
+Installing collected packages: WTForms, Flask-WTF
+Successfully installed Flask-WTF-0.14.3 WTForms-2.3.1
 ```
 
 ### CSRF 적용
@@ -162,21 +185,20 @@ csrf = CSRFProtect(app)
 ### 작동 확인
 * 콘솔에서 확인
 ```console
-[본인 화면 복사]
-[샘플]
-hkit00@ubuntu:~/tinypetshop$ python3 app.py
+hkit11@ubuntu:~/tinypetshop$ hkit10@ubuntu:~/tinypetshop$ python3 app.py
  * Serving Flask app "app" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
  * Debug mode: on
- * Running on http://0.0.0.0:5100/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 105-203-154
-192.168.0.1 - - [14/Jun/2020 22:48:05] "GET / HTTP/1.1" 200 -
-192.168.0.1 - - [14/Jun/2020 22:48:18] "GET /getPosts.html HTTP/1.1" 200 -
-192.168.0.1 - - [14/Jun/2020 22:48:21] "GET /getPost.html?csrf_token=IjMyMGFkN2FiYTUyNjE3OWU1NzQ5NzFkMjVmNDNhZTk0YjdhOWI4YjIi.XuapMg.855qVHuJtFJspJFU09cmP-P0lEc&no=1 HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "app.py", line 28, in <module>
+    app.run(port="5110", host="0.0.0.0", debug=True)
+  File "/home/hkit11/.local/lib/python3.8/site-packages/flask/app.py", line 990, in run
+    run_simple(host, port, self, **options)
+  File "/home/hkit11/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 1030, in run_simple
+    s.bind(server_address)
+OSError: [Errno 98] Address already in use
 ```
 * 브라우저에서 확인
 [본인 화면 복사]
