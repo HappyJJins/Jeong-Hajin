@@ -46,7 +46,7 @@ user.email=nanee9556@gmail.com
 # 2 실행형 과제
 
 ## 2.1 만들고자 하는 서비스의 서버프로그램 구현
-[본인 화면 복사]
+![](https://github.com/HappyJJins/Jeong-Hajin/blob/master/hkit_assignment/index.png?raw=true)
 
 ## 2.2 서버프로그램에 대한 unit test 수행
 
